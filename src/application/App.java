@@ -1,4 +1,5 @@
 package application;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import model.dao.DaoFactory;
@@ -16,7 +17,8 @@ public class App {
         System.out.println(seller);
 
         System.out.println("\n=== TEST 2: seller findByDepartment ===");
-        List<Seller> sellers = sellerDaoJDBC.findByDepartment(new Department(1, null));
+        Department department = new Department(2, null);
+        List<Seller> sellers = sellerDaoJDBC.findByDepartment(department);
         
         for (Seller seller2 : sellers) {
             System.out.println(seller2);
@@ -28,5 +30,10 @@ public class App {
         for (Seller seller2 : sellers) {
             System.out.println(seller2);
         }
+
+        System.out.println("\n=== TEST 3: seller insert ===");
+        Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", LocalDateTime.now(), 4000.0, department);
+        sellerDaoJDBC.insert(newSeller);
+        System.out.println("Inserted! New ID = " + newSeller.getId());
     }
 }
