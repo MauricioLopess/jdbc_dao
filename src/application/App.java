@@ -31,9 +31,15 @@ public class App {
             System.out.println(seller2);
         }
 
-        System.out.println("\n=== TEST 3: seller insert ===");
+        System.out.println("\n=== TEST 4: seller insert ===");
         Seller newSeller = new Seller(null, "Greg", "greg@gmail.com", LocalDateTime.now(), 4000.0, department);
         sellerDaoJDBC.insert(newSeller);
         System.out.println("Inserted! New ID = " + newSeller.getId());
+
+        System.out.println("\n=== TEST 5: seller update ===");
+        seller = sellerDaoJDBC.findById(1);
+        seller.setName("Marta Waine");
+        sellerDaoJDBC.update(seller);
+        System.out.println("Updated!");
     }
 }
